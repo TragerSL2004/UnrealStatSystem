@@ -21,17 +21,23 @@ class STATSYSTEMDEMO_API UStatsDA : public UPrimaryDataAsset
 	FText ObjectName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (AllowPrivateAccess = "true"))
-	float Health;
+	float MaxHealth = 100;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (AllowPrivateAccess = "true"))
-	TArray<FString> StatsList;
+	float Health = 100;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	USkeletalMesh* Model;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (AllowPrivateAccess = "true"))
+	TArray<FString> StatsNames = {"UnassignedStat"};
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (AllowPrivateAccess = "true"))
+	TArray<int> StatsValues = {0};
 
 private:
-	UFUNCTION(BlueprintCallable)
-	void AddStatToList(int NewStat);
+	//UFUNCTION(BlueprintCallable)
+	//void AddStatToList(FString NewStat, TArray<FString> List);
+
+	//UFUNCTION(BlueprintCallable)
+	//void AddValueToStat(int NewValue, TArray<int> List, int StatIndex);
 
 	//UFUNCTION(CPF_BlueprintCallable)
 	//void AddEquipmentToList(class UEquipmentComponent* NewEquipment);
