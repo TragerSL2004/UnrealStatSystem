@@ -27,6 +27,9 @@ class STATSYSTEMDEMO_API UEquipmentDA : public UPrimaryDataAsset
 public:
 	UPROPERTY()
 	int MaxValueChanges = ValueChanges.Max();
+
+	UPROPERTY()
+	int MaxStatIndexes = StatIndexes.Max();
 	
 	UFUNCTION()
 	int GetStatIndexes(int Index) { return StatIndexes[Index]; };
