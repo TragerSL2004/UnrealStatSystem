@@ -3,24 +3,28 @@
 
 #include "StatsDA.h"
 
+void UStatsDA::AddValueToStat(int NewValue, TArray<int> List, int StatIndex)
+{
+	List[StatIndex] += NewValue;
+}
 
-//
-//void UStatsDA::AddStatToList(FString NewStat, TArray<FString> List)
-//{
-//	float i = 0;
-//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (AllowPrivateAccess = "true", MakeEditWidget))
-//	List[i] == NewStat;
-//	i++;
-//}
-//
-//void UStatsDA::AddValueToStat(int NewValue, TArray<int> List, int StatIndex)
-//{
-//
-//}
+void UStatsDA::SubtractValueFromStat(int Value, TArray<int> List, int StatIndex)
+{
+	List[StatIndex] -= Value;
+}
 
-//void UStatsDA::AddEquipmentToList(UEquipmentComponent* NewEquipment)
-//{
-//	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Equipment, meta = (AllowPrivateAccess = "true", MakeEditWidget))
-//	NewEquipment;
-//}
+void UStatsDA::EquipItem(UEquipmentDA* Item)
+{
+	for (int i = 0; i < Item->MaxValueChanges; i++)
+	{
+		AddValueToStat(Item->GetValueChanges(i), StatsValues, Item->GetStatIndexes(i));
+	}
+}
 
+void UStatsDA::UnequipItem(UEquipmentDA* Item)
+{
+	for (int i = 0; i < Item->MaxValueChanges; i++)
+	{
+		SubtractValueFromStat(Item->GetValueChanges(i), StatsValues, Item->GetStatIndexes(i));
+	}
+}

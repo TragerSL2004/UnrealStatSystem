@@ -4,11 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "EquipmentDA.h"
 #include "StatsDA.generated.h"
 
 class USkeletalMesh;
 class UUserWidget;
-class UEquipmentComponent;
+class UEquipmentDA;
 /**
  * 
  */
@@ -33,18 +34,15 @@ class STATSYSTEMDEMO_API UStatsDA : public UPrimaryDataAsset
 	TArray<int> StatsValues = {0};
 
 private:
-	//UFUNCTION(BlueprintCallable)
-	//void AddStatToList(FString NewStat, TArray<FString> List);
+	UFUNCTION()
+	void AddValueToStat(int NewValue, TArray<int> List, int StatIndex);
 
-	//UFUNCTION(BlueprintCallable)
-	//void AddValueToStat(int NewValue, TArray<int> List, int StatIndex);
+	UFUNCTION()
+	void SubtractValueFromStat(int NewValue, TArray<int> List, int StatIndex);
 
-	//UFUNCTION(CPF_BlueprintCallable)
-	//void AddEquipmentToList(class UEquipmentComponent* NewEquipment);
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = "true"))
+	void EquipItem(UEquipmentDA* Item);
 
-	//UFUNCTION(CPF_BlueprintCallable)
-	//void EquipItem(class UEquipmentComponent* Item);
-
-	//UFUNCTION(CPF_BlueprintCallable)
-	//void UnequipItem(class UEquipmentComponent* Item);
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = "true"))
+	void UnequipItem(UEquipmentDA* Item);
 };
