@@ -18,10 +18,10 @@ class STATSYSTEMDEMO_API UEquipmentDA : public UPrimaryDataAsset
 	FText EquipmentName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatsChanges, meta = (AllowPrivateAccess = "true"))
-	TArray<int> StatIndexes;
+	TArray<int> StatIndexes = {0};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = StatsChanges, meta = (AllowPrivateAccess = "true"))
-	TArray<int> ValueChanges;
+	TArray<int> ValueChanges = {1};
 
 
 public:

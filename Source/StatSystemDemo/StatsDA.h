@@ -34,15 +34,9 @@ class STATSYSTEMDEMO_API UStatsDA : public UPrimaryDataAsset
 	TArray<int> StatsValues = {0};
 
 private:
-	UFUNCTION()
-	int AddValueToStat(int NewValue, TArray<int> List, int StatIndex);
-
-	UFUNCTION()
-	int SubtractValueFromStat(int NewValue, TArray<int> List, int StatIndex);
+	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = "true"))
+	void EquipItem(UEquipmentDA* Item, TArray<int> ValueChanges, TArray<int> StatIndexes);
 
 	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = "true"))
-	int EquipItem(UEquipmentDA* Item, UStatsDA* ChangedStats);
-
-	UFUNCTION(BlueprintCallable, meta = (AllowPrivateAccess = "true"))
-	int UnequipItem(UEquipmentDA* Item, UStatsDA* ChangedStats);
+	void UnequipItem(UEquipmentDA* Item, TArray<int> ValueChanges, TArray<int> StatIndexes);
 };

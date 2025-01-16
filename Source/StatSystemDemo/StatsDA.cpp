@@ -3,35 +3,24 @@
 
 #include "StatsDA.h"
 
-int UStatsDA::AddValueToStat(int NewValue, TArray<int> List, int StatIndex)
+void UStatsDA::EquipItem(UEquipmentDA* Item, TArray<int> ValueChanges, TArray<int> StatIndexes)
 {
-	int result = List[StatIndex] + NewValue;
-	return result;
-}
-
-int UStatsDA::SubtractValueFromStat(int Value, TArray<int> List, int StatIndex)
-{
-	int result = List[StatIndex] - Value;
-	return result;
-}
-
-int UStatsDA::EquipItem(UEquipmentDA* Item, UStatsDA* ChangedStats)
-{
-	int result;
-		for (int i = 0; i < Item->MaxStatIndexes - 1; i++)
+	for (int stat: StatIndexes)
+	{
+		for (int value: ValueChanges)
 		{
-			result = ChangedStats->StatsValues[Item->GetStatIndexes(i)] += Item->GetValueChanges(i);
+			StatsValues[stat] += value;
 		}
-	return result;
+	}
 }
 
-int UStatsDA::UnequipItem(UEquipmentDA* Item, UStatsDA* ChangedStats)
+void UStatsDA::UnequipItem(UEquipmentDA* Item, TArray<int> ValueChanges, TArray<int> StatIndexes)
 {
-	int result;
-		for (int i = 0; i < Item->MaxStatIndexes - 1; i++)
+	for (int stat: StatIndexes)
+	{
+		for (int value: ValueChanges)
 		{
-			ChangedStats->StatsValues[Item->GetStatIndexes(i)] -= Item->GetValueChanges(i);
-			result = ChangedStats->StatsValues[i];
+			StatsValues[stat] -= value;
 		}
-	return result;
+	}
 }
